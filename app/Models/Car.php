@@ -10,4 +10,9 @@ class Car extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class);
+    }
 }
