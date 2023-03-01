@@ -20,6 +20,6 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/dashboard/cars', [CarController::class, 'index']);
 Route::get('/dashboard/cars/create', [CarController::class, 'create']);
-
+Route::post('/dashboard/cars', [CarController::class, 'store']);
 
 Route::get('/dashboard/owners', [OwnerController::class, 'index']);

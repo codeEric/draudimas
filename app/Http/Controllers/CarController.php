@@ -18,4 +18,18 @@ class CarController extends Controller
     {
         return view('dashboard.cars.create');
     }
+
+    public function store()
+    {
+        $attributes = request()->validate([
+            'brand' => 'required',
+            'model' => 'required',
+            'reg_number' => 'required',
+            'owner_id' => 'required'
+        ]);
+
+        Car::create($attributes);
+
+        return redirect('/dashboard/cars');
+    }
 }
