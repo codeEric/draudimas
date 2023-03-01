@@ -22,8 +22,8 @@
                     <div>
                         <div class="flex space-x-4">
                             <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
-                            <x-nav-link href="/dashboard/cars" :active="request()->is('dashboard/cars')">Cars</x-nav-link>
-                            <x-nav-link href="/dashboard/owners" :active="request()->is('dashboard/owners')">Owners</x-nav-link>
+                            <x-nav-link href="/dashboard/cars" :active="request()->is('dashboard/cars') || request()->is('dashboard/cars/*')">Cars</x-nav-link>
+                            <x-nav-link href="/dashboard/owners" :active="request()->is('dashboard/owners') || request()->is('dashboard/owners/*')">Owners</x-nav-link>
                         </div>
                     </div>
                 </div>

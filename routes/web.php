@@ -1,6 +1,8 @@
 <?php
 
-use App\Models\Car;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OwnerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,20 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/dashboard/cars/create', function () {
-    return view('dashboard.cars.create');
-});
+Route::get('/dashboard/cars', [CarController::class, 'index']);
+Route::get('/dashboard/cars/create', [CarController::class, 'create']);
 
-Route::get('/dashboard/cars', function () {
-    return view('dashboard.cars.index', [
-        'cars' => Car::all()
-    ]);
-});
 
-Route::get('/dashboard/owners', function () {
-    return view('home');
-});
+Route::get('/dashboard/owners', [OwnerController::class, 'index']);
