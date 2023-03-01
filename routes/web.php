@@ -18,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
+
 Route::get('/dashboard/cars', [CarController::class, 'index']);
 Route::get('/dashboard/cars/create', [CarController::class, 'create']);
 Route::post('/dashboard/cars', [CarController::class, 'store']);
 Route::delete('/dashboard/cars/{car}', [CarController::class, 'destroy']);
+Route::get('/dashboard/cars/{car}/edit', [CarController::class, 'edit']);
+Route::patch('/dashboard/cars/{car}', [CarController::class, 'update']);
 
 Route::get('/dashboard/owners', [OwnerController::class, 'index']);
