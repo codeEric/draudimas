@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+
+Route::get('/dashboard/cars', function () {
+    return view('dashboard.cars.index');
+});
+
+Route::get('/dashboard/owners', function () {
+    return view('home');
 });
