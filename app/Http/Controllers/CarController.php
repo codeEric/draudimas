@@ -32,4 +32,10 @@ class CarController extends Controller
 
         return redirect('/dashboard/cars');
     }
+
+    public function destroy(Car $car)
+    {
+        $car->delete();
+        return back();
+    }
 }
