@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('reg_number');
             $table->string('brand');
             $table->string('model');
+            $table->timestamps();
         });
     }
 

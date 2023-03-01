@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Car;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,14 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/dashboard/cars/create', function () {
+    return view('dashboard.cars.create');
+});
+
 Route::get('/dashboard/cars', function () {
-    return view('dashboard.cars.index');
+    return view('dashboard.cars.index', [
+        'cars' => Car::all()
+    ]);
 });
 
 Route::get('/dashboard/owners', function () {
