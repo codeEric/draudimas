@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('owner_id');
+            $table->foreignId('owner_id')->constrained();
             $table->string('reg_number');
             $table->string('brand');
             $table->string('model');
