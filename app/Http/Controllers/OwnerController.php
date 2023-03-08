@@ -10,7 +10,7 @@ class OwnerController extends Controller
     public function index()
     {
         return view('dashboard.owners.index', [
-            'owners' => Owner::all()
+            'owners' => Owner::paginate(15)
         ]);
     }
 
@@ -28,7 +28,7 @@ class OwnerController extends Controller
 
         Owner::create($attributes);
 
-        return redirect('/dashboard/owners');
+        return redirect('/dashboard/owners')->with('success', 'New owner has been added');
     }
 
     public function edit(Owner $owner)
@@ -48,12 +48,12 @@ class OwnerController extends Controller
 
         $owner->update($attributes);
 
-        return redirect('/dashboard/owners');
+        return redirect('/dashboard/owners')->with('success', 'Owner has been updated');
     }
 
     public function destroy(Owner $owner)
     {
         $owner->delete();
-        return back();
+        return back()->with('success', 'Owner has been deleted');
     }
 }

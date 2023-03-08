@@ -101,5 +101,8 @@
                 </div>
             </div>
         </div>
+        <div class="mt-4">
+            {{ $cars->links() }}
+        </div>
     </x-dashboard>
 </x-layout>

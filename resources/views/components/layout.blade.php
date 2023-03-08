@@ -32,5 +32,4 @@
     </nav>
 
     {{ $slot }}
-    </section>
 </body>

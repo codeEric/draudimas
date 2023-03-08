@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Car::factory(10)->create();
+
+
+        \App\Models\Owner::factory()->count(100)->hasCar(rand(1, 3))->create();
     }
 }

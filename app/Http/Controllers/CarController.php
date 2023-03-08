@@ -9,7 +9,7 @@ class CarController extends Controller
     public function index()
     {
         return view('dashboard.cars.index', [
-            'cars' => Car::with('owner')->get()
+            'cars' => Car::with('owner')->paginate(15)
         ]);
     }
 
@@ -29,7 +29,7 @@ class CarController extends Controller
 
         Car::create($attributes);
 
-        return redirect('/dashboard/cars');
+        return redirect('/dashboard/cars')->with('success', "New car has been added!");
     }
 
     public function edit(Car $car)
@@ -51,12 +51,12 @@ class CarController extends Controller
 
         $car->update($attributes);
 
-        return redirect('/dashboard/cars');
+        return redirect('/dashboard/cars')->with('success', "Car has been updated");
     }
 
     public function destroy(Car $car)
     {
         $car->delete();
-        return back();
+        return back()->with('success', 'Car has been deleted');
     }
 }
