@@ -9,8 +9,14 @@ class OwnerController extends Controller
 {
     public function index()
     {
+
+        $filter = request()->session()->get('filterOwners', (object)['name' => null, 'surname' => null]);
+
+        $owners = Owner::filter($filter)->paginate(15);
+
         return view('dashboard.owners.index', [
-            'owners' => Owner::paginate(15)
+            'owners' => $owners,
+            'filter' => $filter
         ]);
     }
 
@@ -55,5 +61,14 @@ class OwnerController extends Controller
     {
         $owner->delete();
         return back()->with('success', 'Owner has been deleted');
+    }
+
+    public function search()
+    {
+        $filterOwners = new \stdClass();
+        $filterOwners->name = request('search-name');
+        $filterOwners->surname = request('search-surname');
+        request()->session()->put('filterOwners', $filterOwners);
+        return redirect('/dashboard/owners');
     }
 }

@@ -4,6 +4,29 @@
             <div class="-my-2 overflow-x-auto">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6
             lg:px-8">
+                    <x-search heading="Search for cars">
+                        <form method="POST" action="/dashboard/cars/search">
+                            @csrf
+                            <x-form.input name="search-brand" labelName="Brand" value="{{ $filter->brand }}" />
+                            <x-form.input name="search-model" labelName="Model" value="{{ $filter->model }}" />
+                            <x-form.label name="search-reg_number" labelName="Registration number" />
+
+                            <select name="search-reg_number" id="reg_number"
+                                class="border border-gray-200 p-2 w-full rounded -bottom-3q">
+                                <option value="">No filter</option>
+                                @foreach ($allCars as $car)
+                                    <option value="{{ $car->reg_number }}"
+                                        {{ $filter->reg_number == $car->reg_number ? 'selected' : '' }}>
+                                        {{ $car->reg_number }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            <x-form.error name="search-reg_number" />
+
+                            <x-form.submit>Search</x-form.submit>
+                        </form>
+                    </x-search>
                     <div class="mt-2 mb-6">
                         <a href="/dashboard/cars/create"
                             class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">

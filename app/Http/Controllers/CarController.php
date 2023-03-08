@@ -8,8 +8,15 @@ class CarController extends Controller
 {
     public function index()
     {
+
+        $filter = request()->session()->get('filterCars', (object)['brand' => null, 'model' => null, 'reg_number' => null]);
+
+        $cars = Car::with('owner')->filter($filter)->paginate(15);
+
         return view('dashboard.cars.index', [
-            'cars' => Car::with('owner')->paginate(15)
+            'allCars' => Car::with('owner')->get(),
+            'cars' => $cars,
+            'filter' => $filter
         ]);
     }
 
@@ -58,5 +65,15 @@ class CarController extends Controller
     {
         $car->delete();
         return back()->with('success', 'Car has been deleted');
+    }
+
+    public function search()
+    {
+        $filterCars = new \stdClass();
+        $filterCars->brand = request('search-brand');
+        $filterCars->model = request('search-model');
+        $filterCars->reg_number = request('search-reg_number');
+        request()->session()->put('filterCars', $filterCars);
+        return redirect('/dashboard/cars');
     }
 }

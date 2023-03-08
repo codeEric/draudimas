@@ -4,6 +4,14 @@
             <div class="-my-2 overflow-x-auto">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6
           lg:px-8">
+                    <x-search heading="Search for owners">
+                        <form method="POST" action="/dashboard/owners/search">
+                            @csrf
+                            <x-form.input name="search-name" labelName="Name" value="{{ $filter->name }}" />
+                            <x-form.input name="search-surname" labelName="Surname" value="{{ $filter->surname }}" />
+                            <x-form.submit>Search</x-form.submit>
+                        </form>
+                    </x-search>
                     <div class="mt-2 mb-6">
                         <a href="/dashboard/owners/create"
                             class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">

@@ -17,5 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+
+Route::post('/dashboard/cars/search', [CarController::class, 'search']);
+Route::post('/dashboard/owners/search', [OwnerController::class, 'search']);
+
+
 Route::resource('dashboard/cars', CarController::class)->except('show');
 Route::resource('dashboard/owners', OwnerController::class)->except('show');
