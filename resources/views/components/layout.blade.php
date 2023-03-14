@@ -1,17 +1,12 @@
 <!doctype html>
 
-<title>Laravel From Scratch Blog</title>
+<title>Insurance</title>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-<style>
-    html {
-        scroll-behavior: smooth;
-    }
-</style>
 
-<body style="font-family: Open Sans, sans-serif">
+<body style="font-family: Open Sans, sans-serif" class="h-screen">
     <nav class="bg-gray-800">
         <div class="px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
@@ -27,6 +22,20 @@
                         </div>
                     </div>
                 </div>
+                @guest
+                    <div class="flex space-x-4">
+                        <a class="text-blue-500 hover:text-blue-600" href="/login">Login</a>
+                        <a class="text-blue-500 hover:text-blue-600" href="/register">Register</a>
+                    </div>
+                @endguest
+                @auth
+                    <div>
+                        <form id="logout-form" method="POST" action="/logout">
+                            @csrf
+                            <button class="text-red-500 hover:text-red-700">Log out</button>
+                        </form>
+                    </div>
+                @endauth
             </div>
         </div>
     </nav>
