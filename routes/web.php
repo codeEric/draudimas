@@ -21,7 +21,8 @@ use App\Http\Controllers\SessionsController;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
-  Route::resource('dashboard/cars', CarController::class)->except('show');
+  Route::resource('dashboard/cars', CarController::class)->except('show')->middleware('role');
+  Route::get('dashboard/cars', [CarController::class, 'index']);
   Route::post('/dashboard/cars/search', [CarController::class, 'search']);
   Route::post('logout', [SessionsController::class, 'destroy']);
 });
@@ -34,4 +35,6 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::post('/dashboard/owners/search', [OwnerController::class, 'search']);
+
 Route::resource('dashboard/owners', OwnerController::class)->except('show');
+Route::get('dashboard/owners', [OwnerController::class, 'index']);

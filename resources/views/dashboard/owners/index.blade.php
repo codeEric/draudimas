@@ -12,13 +12,18 @@
                             <x-form.submit>Search</x-form.submit>
                         </form>
                     </x-search>
-                    <div class="mt-2 mb-6">
-                        <a href="/dashboard/owners/create"
-                            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                            New owner
-                        </a>
+                    @auth
 
-                    </div>
+                        @if (Auth::user()->isAdmin())
+                            <div class="mt-2 mb-6">
+                                <a href="/dashboard/owners/create"
+                                    class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                                    New owner
+                                </a>
+
+                            </div>
+                        @endif
+                    @endauth
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-100">

@@ -6,5 +6,4 @@
             {{ $slot }}
         </main>
     </div>
-    <x-flash-message />
 </section>
