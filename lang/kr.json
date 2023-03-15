@@ -43,5 +43,7 @@
   "Car has been deleted": "차량이 삭제되었습니다",
   "New owner has been added!": "새 소유자가 추가되었습니다!",
   "Owner has been updated": "소유자가 업데이트되었습니다",
-  "Owner has been deleted": "소유자가 삭제되었습니다"
+  "Owner has been deleted": "소유자가 삭제되었습니다",
+  "Welcome back!": "다시 오신 것을 환영합니다!",
+  "Your provided credentials could not be verified": "제공된 자격 증명을 확인할 수 없습니다"
 }

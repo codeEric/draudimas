@@ -28,12 +28,14 @@ class SessionsController extends Controller
 
         session()->regenerate();
 
-        return redirect('/dashboard/cars')->with('success', "Welcome Back!");
+        return redirect('/dashboard/cars')->with('success', "Welcome back!");
     }
 
     public function destroy()
     {
+        $language = session()->get('lang');
         session()->flush();
+        session()->put('lang', $language);
         auth()->logout();
         return redirect('/login');
     }
