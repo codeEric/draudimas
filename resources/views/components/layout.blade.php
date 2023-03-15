@@ -4,6 +4,9 @@
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css"
+    integrity="sha512-uvXdJud8WaOlQFjlz9B15Yy2Au/bMAvz79F7Xa6OakCl2jvQPdHD0hb3dEqZRdSwG4/sknePXlE7GiarwA/9Wg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
 <body style="font-family: Open Sans, sans-serif" class="h-screen">
@@ -36,6 +39,14 @@
                         </form>
                     </div>
                 @endauth
+                <div class="flex ml-8 space-x-4">
+                    <div>
+                        <a href="{{ '/setLanguage/en' }}"><span class="fi fi-us"></span></a>
+                    </div>
+                    <div>
+                        <a href="{{ '/setLanguage/kr' }}"><span class="fi fi-kr"></span></a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>

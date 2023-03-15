@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 
@@ -38,3 +39,5 @@ Route::post('/dashboard/owners/search', [OwnerController::class, 'search']);
 
 Route::resource('dashboard/owners', OwnerController::class)->except('show');
 Route::get('dashboard/owners', [OwnerController::class, 'index']);
+
+Route::get('/setLanguage/{language}', [LanguageController::class, 'setLanguage']);
