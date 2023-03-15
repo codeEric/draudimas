@@ -9,7 +9,7 @@
                             @csrf
                             <x-form.input name="search-name" labelName="Name" value="{{ $filter->name }}" />
                             <x-form.input name="search-surname" labelName="Surname" value="{{ $filter->surname }}" />
-                            <x-form.submit>Search</x-form.submit>
+                            <x-form.submit>{{ __('Search') }}</x-form.submit>
                         </form>
                     </x-search>
                     @auth
@@ -18,7 +18,7 @@
                             <div class="mt-2 mb-6">
                                 <a href="/dashboard/owners/create"
                                     class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                                    New owner
+                                    {{ __('New owner') }}
                                 </a>
 
                             </div>
@@ -31,14 +31,14 @@
                                     <th class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm text-black-900 font-bold">
-                                                Name
+                                                {{ __('Name') }}
                                             </div>
                                         </div>
                                     </th>
                                     <th class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm text-black-900 font-bold">
-                                                Surname
+                                                {{ __('Surname') }}
                                             </div>
                                         </div>
                                     </th>
@@ -64,18 +64,23 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="/dashboard/owners/{{ $owner->id }}/edit"
-                                                class="text-blue-500 hover:text-blue-600">Edit</a>
-                                        </td>
+                                        @auth
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <form method="POST" action="/dashboard/owners/{{ $owner->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="text-xs text-red-400">Delete</button>
-                                            </form>
-                                        </td>
+                                            @if (Auth::user()->isAdmin())
+                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <a href="/dashboard/owners/{{ $owner->id }}/edit"
+                                                        class="text-blue-500 hover:text-blue-600">{{ __('Edit') }}</a>
+                                                </td>
+
+                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <form method="POST" action="/dashboard/owners/{{ $owner->id }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="text-xs text-red-400">{{ __('Delete') }}</button>
+                                                    </form>
+                                                </td>
+                                            @endif
+                                        @endauth
                                 @endforeach
                                 </tr>
                             </tbody>

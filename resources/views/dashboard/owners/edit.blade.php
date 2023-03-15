@@ -1,5 +1,5 @@
 <x-layout>
-    <x-dashboard heading="Edit owner:">
+    <x-dashboard heading="Edit owner">
         <form method="POST" action="/dashboard/owners/{{ $owner->id }}">
             @csrf
             @method('PATCH')

@@ -1,5 +1,5 @@
 <x-layout>
-    <x-dashboard :heading="'Edit car: ' . $car->reg_number">
+    <x-dashboard :heading="__('Edit car') . ': ' . $car->reg_number">
         <form method="POST" action="/dashboard/cars/{{ $car->id }}">
             @csrf
             @method('PATCH')

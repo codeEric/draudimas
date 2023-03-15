@@ -13,7 +13,7 @@
 
                             <select name="search-reg_number" id="reg_number"
                                 class="border border-gray-200 p-2 w-full rounded -bottom-3q">
-                                <option value="">No filter</option>
+                                <option value="">{{ __('No filter') }}</option>
                                 @foreach ($allCars as $car)
                                     <option value="{{ $car->reg_number }}"
                                         {{ $filter->reg_number == $car->reg_number ? 'selected' : '' }}>
@@ -24,14 +24,14 @@
 
                             <x-form.error name="search-reg_number" />
 
-                            <x-form.submit>Search</x-form.submit>
+                            <x-form.submit>{{ __('Search') }}</x-form.submit>
                         </form>
                     </x-search>
                     @if (Auth::user()->isAdmin())
                         <div class="mt-2 mb-6">
                             <a href="/dashboard/cars/create"
                                 class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                                New car
+                                {{ __('New car') }}
                             </a>
                         </div>
                     @endif
@@ -42,28 +42,28 @@
                                     <th class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm text-black-900 font-bold">
-                                                Brand
+                                                {{ __('Brand') }}
                                             </div>
                                         </div>
                                     </th>
                                     <th class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm text-black-900 font-bold">
-                                                Model
+                                                {{ __('Model') }}
                                             </div>
                                         </div>
                                     </th>
                                     <th class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm text-black-900 font-bold">
-                                                Registration number
+                                                {{ __('Registration number') }}
                                             </div>
                                         </div>
                                     </th>
                                     <th class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm text-black-900 font-bold">
-                                                Owner
+                                                {{ __('Owner') }}
                                             </div>
                                         </div>
                                     </th>
@@ -105,18 +105,20 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="/dashboard/cars/{{ $car->id }}/edit"
-                                                class="text-blue-500 hover:text-blue-600">Edit</a>
-                                        </td>
+                                        @if (Auth::user()->isAdmin())
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <a href="/dashboard/cars/{{ $car->id }}/edit"
+                                                    class="text-blue-500 hover:text-blue-600">{{ __('Edit') }}</a>
+                                            </td>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <form method="POST" action="/dashboard/cars/{{ $car->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="text-xs text-red-400">Delete</button>
-                                            </form>
-                                        </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <form method="POST" action="/dashboard/cars/{{ $car->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="text-xs text-red-400">{{ __('Delete') }}</button>
+                                                </form>
+                                            </td>
+                                        @endif
                                 @endforeach
                                 </tr>
                             </tbody>
