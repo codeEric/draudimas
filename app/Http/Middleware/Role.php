@@ -18,6 +18,9 @@ class Role
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
+        if ($user === null)
+            return redirect()->back()->with('error', "You don't have permissions to enter this page!");
+
         if ($user->isAdmin()) {
             return $next($request);
         }

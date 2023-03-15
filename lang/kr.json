@@ -36,5 +36,12 @@
   "Add new car": "새 차 추가",
   "Add new owner": "새 소유자 추가",
   "Edit car": "편집차",
-  "Edit owner": "소유자 편집"
+  "Edit owner": "소유자 편집",
+  "You don't have permissions to enter this page!": "이 페이지에 들어갈 수 있는 권한이 없습니다!",
+  "New car has been added!": "새 차가 추가되었습니다!",
+  "Car has been updated": "차량이 업데이트되었습니다",
+  "Car has been deleted": "차량이 삭제되었습니다",
+  "New owner has been added!": "새 소유자가 추가되었습니다!",
+  "Owner has been updated": "소유자가 업데이트되었습니다",
+  "Owner has been deleted": "소유자가 삭제되었습니다"
 }

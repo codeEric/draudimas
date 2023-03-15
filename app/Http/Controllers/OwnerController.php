@@ -34,7 +34,7 @@ class OwnerController extends Controller
 
         Owner::create($attributes);
 
-        return redirect('/dashboard/owners')->with('success', 'New owner has been added');
+        return redirect('/dashboard/owners')->with('success', 'New owner has been added!');
     }
 
     public function edit(Owner $owner)

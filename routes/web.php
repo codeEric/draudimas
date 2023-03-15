@@ -37,7 +37,7 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/dashboard/owners/search', [OwnerController::class, 'search']);
 
-Route::resource('dashboard/owners', OwnerController::class)->except('show');
+Route::resource('dashboard/owners', OwnerController::class)->except('show')->middleware('role');
 Route::get('dashboard/owners', [OwnerController::class, 'index']);
 
 Route::get('/setLanguage/{language}', [LanguageController::class, 'setLanguage']);
