@@ -28,9 +28,9 @@ class CarController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'brand' => 'required',
-            'model' => 'required',
-            'reg_number' => 'required',
+            'brand' => 'required|min:2|max:255',
+            'model' => 'required|min:2|max:255',
+            'reg_number' => ['required', 'regex:/^[A-Z]{3}\d{3}$/'],
             'owner_id' => 'required'
         ]);
 
@@ -50,9 +50,9 @@ class CarController extends Controller
     {
 
         $attributes = request()->validate([
-            'brand' => 'required',
-            'model' => 'required',
-            'reg_number' => 'required',
+            'brand' => 'required|min:2|max:255',
+            'model' => 'required|min:2|max:255',
+            'reg_number' => ['required', 'regex:/^[A-Z]{3}\d{3}$/'],
             'owner_id' => 'required'
         ]);
 

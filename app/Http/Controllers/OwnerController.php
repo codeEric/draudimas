@@ -28,8 +28,8 @@ class OwnerController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'name' => 'required',
-            'surname' => 'required',
+            'name' => 'required|min:3|max:255|alpha',
+            'surname' => 'required|min:2|max:255|alpha',
         ]);
 
         Owner::create($attributes);
@@ -48,8 +48,8 @@ class OwnerController extends Controller
     {
 
         $attributes = request()->validate([
-            'name' => 'required',
-            'surname' => 'required',
+            'name' => 'required|min:3|max:255|alpha',
+            'surname' => 'required|min:2|max:255|alpha',
         ]);
 
         $owner->update($attributes);
