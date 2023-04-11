@@ -1,6 +1,6 @@
 <x-layout>
     <x-dashboard :heading="__('Edit car') . ': ' . $car->reg_number">
-        <form method="POST" action="/dashboard/cars/{{ $car->id }}">
+        <form method="POST" action="/dashboard/cars/{{ $car->id }}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <x-form.input name="brand" :value="old('brand', $car->brand)" />
@@ -18,7 +18,9 @@
 
                 <x-form.error name="owner" />
             </x-form.field>
-
+            <x-form.field>
+                <x-form.file-upload name="image_upload"></x-form.file-upload>
+            </x-form.field>
             <x-form.submit>Save</x-form.submit>
         </form>
     </x-dashboard>

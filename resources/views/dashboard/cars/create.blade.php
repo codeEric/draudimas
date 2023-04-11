@@ -1,6 +1,6 @@
 <x-layout>
     <x-dashboard heading="Add new car">
-        <form method="POST" action="/dashboard/cars">
+        <form method="POST" action="/dashboard/cars" enctype="multipart/form-data">
             @csrf
 
             <x-form.input name="brand" />
@@ -18,7 +18,9 @@
 
                 <x-form.error name="owner" />
             </x-form.field>
-
+            <x-form.field>
+                <x-form.file-upload name="image_upload" />
+            </x-form.field>
             <x-form.submit>Add</x-form.submit>
         </form>
     </x-dashboard>
