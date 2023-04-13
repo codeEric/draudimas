@@ -42,6 +42,13 @@
                                     <th class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm text-black-900 font-bold">
+                                                {{ __('Image') }}
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="text-sm text-black-900 font-bold">
                                                 {{ __('Brand') }}
                                             </div>
                                         </div>
@@ -74,6 +81,14 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach ($cars as $car)
                                     <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    <img src="{{ asset('/storage/cars/' . $car->image) }}"
+                                                        alt="image">
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="text-sm font-medium text-gray-900">

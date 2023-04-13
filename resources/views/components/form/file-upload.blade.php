@@ -15,4 +15,5 @@
             <li x-text="file.name"></li>
         </template>
     </ul>
+    <x-form.error name="{{ $name }}" />
 </div>
