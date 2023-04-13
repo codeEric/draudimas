@@ -72,18 +72,22 @@ class CarController extends Controller
             'model' => 'required|min:2|max:255',
             'reg_number' => ['required', 'regex:/^[A-Z]{3}\d{3}$/'],
             'owner_id' => 'required',
-            'image' => [
+            'images.*' => [
                 File::image()
             ]
         ]);
 
-        if (request()->file("image") != null) {
-            if ($car->image != null) {
-                unlink(storage_path() . "/app/public/cars/" . $car->image);
-            }
+        unset($attributes['images']);
 
-            request()->file("image")->store("/public/cars");
-            $attributes['image'] = request()->file("image")->hashName();
+        if (request()->file("images") != null) {
+            foreach (request()->file('images') as $image) {
+                $image->store("/public/cars");
+                $filename = $image->hashName();
+                CarImage::create([
+                    'image' => $filename,
+                    'car_id' => $car->id
+                ]);
+            }
         }
 
         $car->update($attributes);
@@ -94,6 +98,7 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         $car->delete();
+
         return back()->with('success', 'Car has been deleted');
     }
 
