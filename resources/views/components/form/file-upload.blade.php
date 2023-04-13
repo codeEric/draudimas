@@ -8,7 +8,7 @@
         </svg>
         <span class="mt-2 truncate w-full text-center">Select files...</span>
         <input type='file' class="hidden" x-on:change="files = Object.values($event.target.files)" multiple="multiple"
-            id="{{ $name }}" name="{{ $name }}" />
+            id="{{ $name }}" name="{{ $name }}[]" />
     </label>
     <ul class="space-y-1 ml-4">
         <template x-for="file in files">

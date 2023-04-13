@@ -19,6 +19,15 @@
                 <x-form.error name="owner" />
             </x-form.field>
             <x-form.field>
+                <div class="flex flex-col w-full space-x-8">
+                    @foreach ($car->carImage as $image)
+                        <div>
+                            <img src="{{ asset('/storage/cars/' . $image->image) }}" />
+                        </div>
+                    @endforeach
+                </div>
+            </x-form.field>
+            <x-form.field>
                 <x-form.file-upload name="image"></x-form.file-upload>
             </x-form.field>
             <x-form.submit>Save</x-form.submit>

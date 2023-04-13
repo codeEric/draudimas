@@ -17,6 +17,11 @@ class Car extends Model
         return $this->belongsTo(Owner::class);
     }
 
+    public function carImage()
+    {
+        return $this->hasMany(CarImage::class);
+    }
+
     public function scopeFilter(Builder $query, $filter)
     {
         if ($filter->brand != null) {

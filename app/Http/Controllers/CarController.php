@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\CarImage;
 use Illuminate\Validation\Rules\File;
 
 class CarController extends Controller
@@ -33,17 +34,25 @@ class CarController extends Controller
             'model' => 'required|min:2|max:255',
             'reg_number' => ['required', 'regex:/^[A-Z]{3}\d{3}$/'],
             'owner_id' => 'required',
-            'image' => [
+            'images.*' => [
                 File::image()
             ]
         ]);
 
-        if (request()->file("image") != null) {
-            request()->file("image")->store("/public/cars");
-            $attributes['image'] = request()->file("image")->hashName();
-        }
+        unset($attributes['images']);
 
-        Car::create($attributes);
+        $car = Car::create($attributes);
+
+        if (request()->file("images") != null) {
+            foreach (request()->file('images') as $image) {
+                $image->store("/public/cars");
+                $filename = $image->hashName();
+                CarImage::create([
+                    'image' => $filename,
+                    'car_id' => $car->id
+                ]);
+            }
+        }
 
         return redirect('/dashboard/cars')->with('success', "New car has been added!");
     }

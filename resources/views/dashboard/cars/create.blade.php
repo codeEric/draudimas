@@ -19,7 +19,7 @@
                 <x-form.error name="owner" />
             </x-form.field>
             <x-form.field>
-                <x-form.file-upload name="image" />
+                <x-form.file-upload name="images" />
             </x-form.field>
             <x-form.submit>Add</x-form.submit>
         </form>

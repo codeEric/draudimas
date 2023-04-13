@@ -85,7 +85,7 @@
                                             <div class="flex items-center">
                                                 <div class="text-sm font-medium text-gray-900">
                                                     <img class="h-full w-20"
-                                                        src="{{ $car->image ? asset('/storage/cars/' . $car->image) : url('/images/no_image.svg') }}"
+                                                        src="{{ $car->carImage()->exists() ? asset('/storage/cars/' . $car->carImage->first()->image) : url('/images/no_image.svg') }}"
                                                         alt="image">
                                                 </div>
                                             </div>
