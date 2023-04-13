@@ -34,13 +34,14 @@ class CarController extends Controller
             'reg_number' => ['required', 'regex:/^[A-Z]{3}\d{3}$/'],
             'owner_id' => 'required',
             'image' => [
-                'required', File::image()
+                File::image()
             ]
         ]);
-        // dd($attributes);
 
-        request()->file("image")->store("/public/cars");
-        $attributes['image'] = request()->file("image")->hashName();
+        if (request()->file("image") != null) {
+            request()->file("image")->store("/public/cars");
+            $attributes['image'] = request()->file("image")->hashName();
+        }
 
         Car::create($attributes);
 
@@ -61,8 +62,20 @@ class CarController extends Controller
             'brand' => 'required|min:2|max:255',
             'model' => 'required|min:2|max:255',
             'reg_number' => ['required', 'regex:/^[A-Z]{3}\d{3}$/'],
-            'owner_id' => 'required'
+            'owner_id' => 'required',
+            'image' => [
+                File::image()
+            ]
         ]);
+
+        if (request()->file("image") != null) {
+            if ($car->image != null) {
+                unlink(storage_path() . "/app/public/cars/" . $car->image);
+            }
+
+            request()->file("image")->store("/public/cars");
+            $attributes['image'] = request()->file("image")->hashName();
+        }
 
         $car->update($attributes);
 
