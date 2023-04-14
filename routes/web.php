@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\CarImageController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\SessionsController;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
+  Route::delete('/dashboard/image/{id}', [CarImageController::class, 'destroy']);
   Route::resource('dashboard/cars', CarController::class)->except('show')->middleware('role');
   Route::get('dashboard/cars', [CarController::class, 'index']);
   Route::post('/dashboard/cars/search', [CarController::class, 'search']);

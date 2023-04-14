@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\CarImage;
 use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -97,6 +98,9 @@ class CarController extends Controller
 
     public function destroy(Car $car)
     {
+        foreach ($car->carImage as $image) {
+            unlink(storage_path('app/public/cars/' . $image->image));
+        }
         $car->delete();
 
         return back()->with('success', 'Car has been deleted');

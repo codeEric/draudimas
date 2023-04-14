@@ -19,18 +19,31 @@
                 <x-form.error name="owner" />
             </x-form.field>
             <x-form.field>
-                <div class="grid grid-cols-3 w-full space-y-4">
-                    @foreach ($car->carImage as $image)
-                        <div>
-                            <img class="h-full w-64" src="{{ asset('/storage/cars/' . $image->image) }}" />
-                        </div>
-                    @endforeach
-                </div>
-            </x-form.field>
-            <x-form.field>
                 <x-form.file-upload name="images"></x-form.file-upload>
             </x-form.field>
             <x-form.submit>Save</x-form.submit>
         </form>
+
+        <div class="mt-8">
+            <h1 class="font-bold text-xl">Uploaded images:</h1>
+            @if ($car->carImage->isEmpty())
+                <h2>No images has been uploaded yet</h2>
+            @else
+                <div class="grid grid-cols-3 w-full space-y-4 mt-4">
+                    @foreach ($car->carImage as $image)
+                        <div class="relative">
+                            <img class="h-full w-75" src="{{ asset('/storage/cars/' . $image->image) }}" />
+                            <form method="POST" action="/dashboard/image/{{ $image->id }}"
+                                class="absolute bottom-1 left-1">
+                                @csrf
+                                @method('DELETE')
+                                <button
+                                    class="text-xs font-bold text-black bg-red-400 rounded-lg w-16 h-8 mt-2">{{ __('Delete') }}</button>
+                            </form>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
     </x-dashboard>
 </x-layout>
