@@ -21,7 +21,7 @@
             <x-form.field>
                 <x-form.file-upload name="images" />
             </x-form.field>
-            <x-form.submit>Add</x-form.submit>
+            <x-form.submit>{{ __('Add') }}</x-form.submit>
         </form>
     </x-dashboard>
 </x-layout>

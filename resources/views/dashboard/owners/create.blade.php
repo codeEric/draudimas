@@ -6,7 +6,7 @@
             <x-form.input name="name" />
             <x-form.input name="surname" />
 
-            <x-form.submit>Add</x-form.submit>
+            <x-form.submit>{{ __('Add') }}</x-form.submit>
         </form>
     </x-dashboard>
 </x-layout>

@@ -21,13 +21,13 @@
             <x-form.field>
                 <x-form.file-upload name="images"></x-form.file-upload>
             </x-form.field>
-            <x-form.submit>Save</x-form.submit>
+            <x-form.submit>{{ __('Save') }}</x-form.submit>
         </form>
 
         <div class="mt-8">
-            <h1 class="font-bold text-xl">Uploaded images:</h1>
+            <h1 class="font-bold text-xl">{{ __('Uploaded images') . ':' }}</h1>
             @if ($car->carImage->isEmpty())
-                <h2>No images has been uploaded yet</h2>
+                <h2>{{ __('No images has been uploaded yet') }}</h2>
             @else
                 <div class="grid grid-cols-3 w-full space-y-4 mt-4">
                     @foreach ($car->carImage as $image)
