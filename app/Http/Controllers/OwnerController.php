@@ -43,6 +43,8 @@ class OwnerController extends Controller
             'surname' => 'required|min:2|max:255|alpha',
         ]);
 
+        $attributes['user_id'] = Auth::user()->id;
+
         Owner::create($attributes);
 
         return redirect('/dashboard/owners')->with('success', 'New owner has been added!');
