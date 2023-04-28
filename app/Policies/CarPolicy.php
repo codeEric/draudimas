@@ -41,7 +41,7 @@ class CarPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**

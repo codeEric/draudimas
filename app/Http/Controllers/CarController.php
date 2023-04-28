@@ -19,7 +19,7 @@ class CarController extends Controller
 
         $filter = request()->session()->get('filterCars', (object)['brand' => null, 'model' => null, 'reg_number' => null]);
 
-        $cars = Car::with('owner')->filter($filter)->paginate(15);
+        $cars = Car::with('owner')->filter($filter)->get();
 
         return view('dashboard.cars.index', [
             'allCars' => Car::with('owner')->get(),

@@ -91,8 +91,8 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4">
+        {{-- <div class="mt-4">
             {{ $owners->links() }}
-        </div>
+        </div> --}}
     </x-dashboard>
 </x-layout>

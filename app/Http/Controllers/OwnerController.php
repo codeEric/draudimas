@@ -18,12 +18,7 @@ class OwnerController extends Controller
 
         $filter = request()->session()->get('filterOwners', (object)['name' => null, 'surname' => null]);
 
-        // $user = Auth::user();
-        // if ($user->can('view')) {
-        //     $owners = Owner::filter($filter)->paginate(15);
-        // }
-
-        $owners = Owner::filter($filter)->paginate(15);
+        $owners = Owner::filter($filter)->get();
 
         return view('dashboard.owners.index', [
             'owners' => $owners,
