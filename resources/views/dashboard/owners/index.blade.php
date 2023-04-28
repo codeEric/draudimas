@@ -48,39 +48,41 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach ($owners as $owner)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    {{ $owner->name }}
+                                    @can('can-view-owner', $owner)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $owner->name }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
+                                            </td>
 
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    {{ $owner->surname }}
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $owner->surname }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        @auth
+                                            </td>
+                                            @auth
 
-                                            @if (Auth::user()->isAdmin())
-                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="/dashboard/owners/{{ $owner->id }}/edit"
-                                                        class="text-blue-500 hover:text-blue-600">{{ __('Edit') }}</a>
-                                                </td>
+                                                @if (Auth::user()->isAdmin())
+                                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                        <a href="/dashboard/owners/{{ $owner->id }}/edit"
+                                                            class="text-blue-500 hover:text-blue-600">{{ __('Edit') }}</a>
+                                                    </td>
 
-                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <form method="POST" action="/dashboard/owners/{{ $owner->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="text-xs text-red-400">{{ __('Delete') }}</button>
-                                                    </form>
-                                                </td>
-                                            @endif
-                                        @endauth
+                                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                        <form method="POST" action="/dashboard/owners/{{ $owner->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="text-xs text-red-400">{{ __('Delete') }}</button>
+                                                        </form>
+                                                    </td>
+                                                @endif
+                                            @endauth
+                                        @endcan
                                 @endforeach
                                 </tr>
                             </tbody>

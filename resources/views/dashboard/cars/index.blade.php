@@ -80,61 +80,63 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach ($cars as $car)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    <img class="h-full w-20"
-                                                        src="{{ $car->carImage()->exists() ? asset('/storage/cars/' . $car->carImage->first()->image) : url('/images/no_image.svg') }}"
-                                                        alt="image">
+                                    @can('can-view-car', $car)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        <img class="h-full w-20"
+                                                            src="{{ $car->carImage()->exists() ? asset('/storage/cars/' . $car->carImage->first()->image) : url('/images/no_image.svg') }}"
+                                                            alt="image">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    {{ $car->brand }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $car->brand }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    {{ $car->model }}
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    {{ $car->reg_number }}
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    {{ $car->owner->name }} {{ $car->owner->surname }}
-                                                </div>
-                                            </div>
-                                        </td>
-                                        @if (Auth::user()->isAdmin())
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="/dashboard/cars/{{ $car->id }}/edit"
-                                                    class="text-blue-500 hover:text-blue-600">{{ __('Edit') }}</a>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <form method="POST" action="/dashboard/cars/{{ $car->id }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="text-xs text-red-400">{{ __('Delete') }}</button>
-                                                </form>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $car->model }}
+                                                    </div>
+                                                </div>
                                             </td>
-                                        @endif
+
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $car->reg_number }}
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $car->owner->name }} {{ $car->owner->surname }}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            @if (Auth::user()->isAdmin())
+                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <a href="/dashboard/cars/{{ $car->id }}/edit"
+                                                        class="text-blue-500 hover:text-blue-600">{{ __('Edit') }}</a>
+                                                </td>
+
+                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <form method="POST" action="/dashboard/cars/{{ $car->id }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="text-xs text-red-400">{{ __('Delete') }}</button>
+                                                    </form>
+                                                </td>
+                                            @endif
+                                        @endcan
                                 @endforeach
                                 </tr>
                             </tbody>

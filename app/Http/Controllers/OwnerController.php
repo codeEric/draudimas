@@ -4,13 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Owner::class, 'owner');
+    }
+
     public function index()
     {
 
         $filter = request()->session()->get('filterOwners', (object)['name' => null, 'surname' => null]);
+
+        // $user = Auth::user();
+        // if ($user->can('view')) {
+        //     $owners = Owner::filter($filter)->paginate(15);
+        // }
 
         $owners = Owner::filter($filter)->paginate(15);
 
@@ -39,6 +50,7 @@ class OwnerController extends Controller
 
     public function edit(Owner $owner)
     {
+
         return view('dashboard.owners.edit', [
             'owner' => $owner
         ]);
@@ -59,6 +71,7 @@ class OwnerController extends Controller
 
     public function destroy(Owner $owner)
     {
+
         $owner->delete();
         return back()->with('success', 'Owner has been deleted');
     }
