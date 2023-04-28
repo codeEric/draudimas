@@ -122,20 +122,22 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            @if (Auth::user()->isAdmin())
-                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="/dashboard/cars/{{ $car->id }}/edit"
-                                                        class="text-blue-500 hover:text-blue-600">{{ __('Edit') }}</a>
-                                                </td>
+                                            @can('update', $car)
+                                                @if (Auth::user()->isAdmin())
+                                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                        <a href="/dashboard/cars/{{ $car->id }}/edit"
+                                                            class="text-blue-500 hover:text-blue-600">{{ __('Edit') }}</a>
+                                                    </td>
 
-                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <form method="POST" action="/dashboard/cars/{{ $car->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="text-xs text-red-400">{{ __('Delete') }}</button>
-                                                    </form>
-                                                </td>
-                                            @endif
+                                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                        <form method="POST" action="/dashboard/cars/{{ $car->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="text-xs text-red-400">{{ __('Delete') }}</button>
+                                                        </form>
+                                                    </td>
+                                                @endif
+                                            @endcan
                                         @endcan
                                 @endforeach
                                 </tr>

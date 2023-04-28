@@ -65,23 +65,24 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            @auth
+                                            @can('update', $owner)
+                                                @auth
+                                                    @if (Auth::user()->isAdmin())
+                                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                            <a href="/dashboard/owners/{{ $owner->id }}/edit"
+                                                                class="text-blue-500 hover:text-blue-600">{{ __('Edit') }}</a>
+                                                        </td>
 
-                                                @if (Auth::user()->isAdmin())
-                                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                        <a href="/dashboard/owners/{{ $owner->id }}/edit"
-                                                            class="text-blue-500 hover:text-blue-600">{{ __('Edit') }}</a>
-                                                    </td>
-
-                                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                        <form method="POST" action="/dashboard/owners/{{ $owner->id }}">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="text-xs text-red-400">{{ __('Delete') }}</button>
-                                                        </form>
-                                                    </td>
-                                                @endif
-                                            @endauth
+                                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                            <form method="POST" action="/dashboard/owners/{{ $owner->id }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="text-xs text-red-400">{{ __('Delete') }}</button>
+                                                            </form>
+                                                        </td>
+                                                    @endif
+                                                @endauth
+                                            @endcan
                                         @endcan
                                 @endforeach
                                 </tr>
