@@ -5,6 +5,7 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 
 use App\Models\Car;
+use App\Models\User;
 use App\Models\Owner;
 use App\Policies\CarPolicy;
 use App\Policies\OwnerPolicy;
@@ -35,7 +36,9 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('can-view-owner', [OwnerPolicy::class, 'view']);
         Gate::define('can-view-car', [CarPolicy::class, 'view']);
-
+        Gate::define('can-list-owners', function (User $user, Owner $owner) {
+            return $user->id === $owner->user_id || $user->role === 'admin';
+        });
 
         //
     }

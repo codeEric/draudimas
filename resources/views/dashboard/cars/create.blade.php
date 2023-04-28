@@ -11,8 +11,10 @@
 
                 <select name="owner_id" id="owner_id">
                     @foreach (\App\Models\Owner::all() as $owner)
-                        <option value="{{ $owner->id }}" {{ old('owner_id') == $owner->id ? 'selected' : '' }}>
-                            {{ ucwords($owner->name) }} {{ ucwords($owner->surname) }}</option>
+                        @can('can-list-owners', $owner)
+                            <option value="{{ $owner->id }}" {{ old('owner_id') == $owner->id ? 'selected' : '' }}>
+                                {{ ucwords($owner->name) }} {{ ucwords($owner->surname) }}</option>
+                        @endcan
                     @endforeach
                 </select>
 
